@@ -12,7 +12,7 @@ A Go-based tool to parse AWS VPC Flow Logs, map each log entry to predefined tag
 
 ## Prerequisites
 
-- [Go](https://golang.org/dl/) (version 1.16 or later)
+- Go (version 1.16 or later) [https://golang.org/dl/]
 - Git (for cloning the repository)
 
 ## Installation
@@ -20,18 +20,19 @@ A Go-based tool to parse AWS VPC Flow Logs, map each log entry to predefined tag
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/vishisth29/vpc-flowlog-parser.git
+   git clone [https://github.com/vishisth29/vpc-flowlog-parser.git](https://github.com/vishisth29/vpc-flowlog-parser.git)
    cd vpc-flowlog-parser
 
 2. **Initialize Go Modules:**
 
-   ```go mod tidy
+   ```bash
+   go mod tidy
 
 3. **Build the Application:**
 
-   ```chmod +x scripts/build.sh
+   ```bash
+   chmod +x scripts/build.sh
    ./scripts/build.sh
-
 
 ## Usage
 The vpc-flowlog-parser executable can be run with command-line flags to specify input and output files.
@@ -44,12 +45,14 @@ The vpc-flowlog-parser executable can be run with command-line flags to specify 
 
 1. **Running the Example**
 
-   ```./bin/flowlogparser -flowlog=examples/flow_log.txt -lookup=examples/lookup.csv -output=output.txt
+   ```bash
+   ./bin/flowlogparser -flowlog=examples/flow_log.txt -lookup=examples/lookup.csv -output=output.txt
 
 
 2. **Running Your Own Test Files**
 
-   ```./bin/flowlogparser -flowlog=path/to/<TEST_FLOW_LOG>.txt -lookup=path/to/<TEST_LOOKUP>.csv -output=path/to/<TEST_OUTPUT>.txt
+   ```bash
+   ./bin/flowlogparser -flowlog=path/to/<TEST_FLOW_LOG>.txt -lookup=path/to/<TEST_LOOKUP>.csv -output=path/to/<TEST_OUTPUT>.txt
 
 # Further Improvements for a Production System
 
@@ -134,3 +137,4 @@ While the current implementation is robust for handling up to 10 MB of flow log 
 
 - **Community Support**:  
   Set up channels (e.g., GitHub Discussions, Slack, Discord) for user support and community engagement.
+"
