@@ -22,3 +22,115 @@ A Go-based tool to parse AWS VPC Flow Logs, map each log entry to predefined tag
    ```bash
    git clone https://github.com/vishisth29/vpc-flowlog-parser.git
    cd vpc-flowlog-parser
+
+2. **Initialize Go Modules:**
+
+   ```go mod tidy
+
+3. **Build the Application:**
+
+   ```chmod +x scripts/build.sh
+   ./scripts/build.sh
+
+
+## Usage
+The vpc-flowlog-parser executable can be run with command-line flags to specify input and output files.
+
+**Command-Line Flags**
+-flowlog : Path to the VPC Flow Log file. (Default: examples/flow_log.txt)
+-lookup : Path to the lookup CSV file. (Default: examples/lookup.csv)
+-output : Path to the output file. (Default: output.txt)
+
+
+1. **Running the Example**
+
+   ```./bin/flowlogparser -flowlog=examples/flow_log.txt -lookup=examples/lookup.csv -output=output.txt
+
+
+2. **Running Your Own Test Files**
+
+   ```./bin/flowlogparser -flowlog=path/to/<TEST_FLOW_LOG>.txt -lookup=path/to/<TEST_LOOKUP>.csv -output=path/to/<TEST_OUTPUT>.txt
+
+# Further Improvements for a Production System
+
+While the current implementation is robust for handling up to 10 MB of flow log data and 10,000 lookup mappings, the following enhancements can be made to scale and optimize the tool for production environments:
+
+## 1. Concurrency and Parallel Processing
+
+- **Goroutines and Channels**:  
+  Utilize Go's concurrency features to process multiple lines of the flow log simultaneously, improving performance on multi-core systems.
+
+- **Worker Pools**:  
+  Implement worker pools to manage the number of concurrent processing threads, preventing resource exhaustion.
+
+## 2. Enhanced Protocol Support
+
+- **Dynamic Protocol Mapping**:  
+  Instead of a static map, fetch protocol mappings from an external source or allow users to define them in a configuration file.
+
+- **Support for IPv6**:  
+  Extend parsing capabilities to handle IPv6 addresses and related flow log fields.
+
+## 3. Improved Error Handling and Reporting
+
+- **Detailed Logs**:  
+  Implement more granular logging levels (e.g., DEBUG, INFO, WARN, ERROR) and log rotation to manage log file sizes.
+
+- **Error Metrics**:  
+  Collect metrics on parsing errors and warnings for monitoring purposes.
+
+## 4. Configuration Management
+
+- **Configuration Files**:  
+  Allow users to define configurations (e.g., file paths, protocol mappings) in YAML or TOML files instead of command-line flags.
+
+- **Environment Variables**:  
+  Support environment variables for configuration to integrate with containerized deployments.
+
+## 5. Scalability and Performance Optimization
+
+- **Streaming Processing**:  
+  Implement streaming parsers to handle very large flow log files without loading the entire file into memory.
+
+- **Caching Mechanisms**:  
+  Use caching for frequently accessed lookup mappings to reduce lookup times.
+
+## 6. User Interface Enhancements
+
+- **Web Interface**:  
+  Develop a web-based dashboard to visualize tag counts and port/protocol statistics in real-time.
+
+- **API Endpoints**:  
+  Expose RESTful APIs to allow integration with other systems or automation tools.
+
+## 7. Security Features
+
+- **Input Validation**:  
+  Implement stricter validation for input files to prevent injection attacks or processing of malformed data.
+
+- **Access Controls**:  
+  Restrict access to sensitive output files or logs, especially when deployed in multi-user environments.
+
+## 8. Testing and Quality Assurance
+
+- **Comprehensive Unit Tests**:  
+  Develop extensive unit tests to cover all functionalities and edge cases.
+
+- **Integration Tests**:  
+  Test the tool in environments that mimic production to ensure reliability under real-world conditions.
+
+## 9. Deployment and Containerization
+
+- **Docker Support**:  
+  Containerize the application using Docker for consistent deployments across different environments.
+
+- **CI/CD Integration**:  
+  Integrate with Continuous Integration/Continuous Deployment pipelines to automate testing and deployment.
+
+## 10. Documentation and User Support
+
+- **Extended Documentation**:  
+  Provide detailed documentation, including troubleshooting guides, advanced usage examples, and FAQs.
+
+- **Community Support**:  
+  Set up channels (e.g., GitHub Discussions, Slack, Discord) for user support and community engagement.
